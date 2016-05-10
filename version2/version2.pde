@@ -1,9 +1,13 @@
+import processing.sound.*;
+
 PImage woman, dress, bra, panties, shoe1, shoe2;
 boolean dress_on;
 boolean shoe1_on;
 boolean shoe2_on;
 boolean bra_on;
 boolean panties_on;
+SoundFile zene;
+boolean zene_on;
 
 void setup() {
   size(500,600);
@@ -19,9 +23,25 @@ void setup() {
   shoe2_on = true;
   bra_on = true;
   panties_on = true;
+  zene = new SoundFile(this, "processing_zene.mp3");
+  zene_on=false; 
 }
 
 void draw() {
+  
+   if ((mouseX > 5) && (mouseX<width-5) && (mouseY>5) && (mouseY<height-5))
+  {
+    if (!zene_on){
+    zene_on=true;
+    zene.play();
+    }
+  }
+  else
+  {
+     zene_on=false;
+     zene.stop();
+  }
+  
   background(woman);
   if (bra_on) {
     image(bra, 0, 0);
